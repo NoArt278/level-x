@@ -6,7 +6,9 @@ const JUMP_VELOCITY : float = 4.5
 const RAY_LENGTH : float = 30
 var mouse_sensitivity : float = 0.002 
 var mouse_pos_delta : Vector2 = Vector2.ZERO
+var curr_interactable : Interactable
 @onready var camera_3d: Camera3D = $Camera3D
+@onready var reticle: ColorRect = %Reticle
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -42,6 +44,16 @@ func _physics_process(delta: float) -> void:
 
 	var result = space_state.intersect_ray(query)
 	var collider = result.get("collider")
+	if collider.get_parent() is Interactable :
+		curr_interactable = collider.get_parent()
+		reticle.visible = true
+	else :
+		curr_interactable = null
+		reticle.visible = false
+	
+	if Input.is_action_just_pressed("interact") :
+		if curr_interactable :
+			curr_interactable._interact()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :

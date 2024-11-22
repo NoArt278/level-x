@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://drsbum71xssyt"]
+
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_wpu04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c4xxs"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w4468"]
+material = SubResource("StandardMaterial3D_c4xxs")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vpsvw"]
+points = PackedVector3Array(-0.25, -0.5, 0, -0.248825, -0.5, -0.0245204, -0.248825, -0.5, 0.0244714, -0.25, 0.5, 0, -0.245204, -0.5, -0.048796, -0.248825, 0.5, -0.0245204, -0.245204, -0.5, 0.0487471, -0.248825, 0.5, 0.0244714, -0.239282, -0.5, -0.0725822, -0.245204, 0.5, -0.048796, -0.239282, -0.5, 0.0725333, -0.245204, 0.5, 0.0487471, -0.23101, -0.5, -0.0956832, -0.239282, 0.5, -0.0725822, -0.23101, -0.5, 0.0956343, -0.239282, 0.5, 0.0725333, -0.220487, -0.5, -0.117854, -0.23101, 0.5, -0.0956832, -0.220487, -0.5, 0.117805, -0.23101, 0.5, 0.0956343, -0.207909, -0.5, -0.1389, -0.220487, 0.5, -0.117854, -0.207909, -0.5, 0.138851, -0.220487, 0.5, 0.117805, -0.193275, -0.5, -0.158624, -0.207909, 0.5, -0.1389, -0.193275, -0.5, 0.158575, -0.207909, 0.5, 0.138851, -0.176782, -0.5, -0.176782, -0.193275, 0.5, -0.158624, -0.176782, -0.5, 0.176733, -0.193275, 0.5, 0.158575, -0.158624, -0.5, -0.193275, -0.176782, 0.5, -0.176782, -0.158624, -0.5, 0.193226, -0.176782, 0.5, 0.176733, -0.1389, -0.5, -0.207909, -0.158624, 0.5, -0.193275, -0.1389, -0.5, 0.20786, -0.158624, 0.5, 0.193226, -0.117854, -0.5, -0.220487, -0.1389, 0.5, -0.207909, -0.117854, -0.5, 0.220439, -0.1389, 0.5, 0.20786, -0.0956832, -0.5, -0.23101, -0.117854, 0.5, -0.220487, -0.0956832, -0.5, 0.230961, -0.117854, 0.5, 0.220439, -0.0725822, -0.5, -0.239282, -0.0956832, 0.5, -0.23101, -0.0725822, -0.5, 0.239233, -0.0956832, 0.5, 0.230961, -0.048796, -0.5, -0.245204, -0.0725822, 0.5, -0.239282, -0.048796, -0.5, 0.245155, -0.0725822, 0.5, 0.239233, -0.0245204, -0.5, -0.248825, -0.048796, 0.5, -0.245204, -0.0245204, -0.5, 0.248776, -0.048796, 0.5, 0.245155, 0, -0.5, -0.25, -0.0245204, 0.5, -0.248825, 0, -0.5, 0.25, -0.0245204, 0.5, 0.248776, 0.0244714, -0.5, -0.248825, 0, 0.5, -0.25, 0.0244714, -0.5, 0.248776, 0, 0.5, 0.25, 0.0487471, -0.5, -0.245204, 0.0244714, 0.5, -0.248825, 0.0487471, -0.5, 0.245155, 0.0244714, 0.5, 0.248776, 0.0725333, -0.5, -0.239282, 0.0487471, 0.5, -0.245204, 0.0725333, -0.5, 0.239233, 0.0487471, 0.5, 0.245155, 0.0956343, -0.5, -0.23101, 0.0725333, 0.5, -0.239282, 0.0956343, -0.5, 0.230961, 0.0725333, 0.5, 0.239233, 0.117805, -0.5, -0.220487, 0.0956343, 0.5, -0.23101, 0.117805, -0.5, 0.220439, 0.0956343, 0.5, 0.230961, 0.138851, -0.5, -0.207909, 0.117805, 0.5, -0.220487, 0.138851, -0.5, 0.20786, 0.117805, 0.5, 0.220439, 0.158575, -0.5, -0.193275, 0.138851, 0.5, -0.207909, 0.158575, -0.5, 0.193226, 0.138851, 0.5, 0.20786, 0.176733, -0.5, -0.176782, 0.158575, 0.5, -0.193275, 0.176733, -0.5, 0.176733, 0.158575, 0.5, 0.193226, 0.193226, -0.5, -0.158624, 0.176733, 0.5, -0.176782, 0.193226, -0.5, 0.158575, 0.176733, 0.5, 0.176733, 0.20786, -0.5, -0.1389, 0.193226, 0.5, -0.158624, 0.20786, -0.5, 0.138851, 0.193226, 0.5, 0.158575, 0.220439, -0.5, -0.117854, 0.20786, 0.5, -0.1389, 0.220439, -0.5, 0.117805, 0.20786, 0.5, 0.138851, 0.230961, -0.5, -0.0956832, 0.220439, 0.5, -0.117854, 0.230961, -0.5, 0.0956343, 0.220439, 0.5, 0.117805, 0.239233, -0.5, -0.0725822, 0.230961, 0.5, -0.0956832, 0.239233, -0.5, 0.0725333, 0.230961, 0.5, 0.0956343, 0.245155, -0.5, -0.048796, 0.239233, 0.5, -0.0725822, 0.245155, -0.5, 0.0487471, 0.239233, 0.5, 0.0725333, 0.248776, -0.5, -0.0245204, 0.245155, 0.5, -0.048796, 0.248776, -0.5, 0.0244714, 0.245155, 0.5, 0.0487471, 0.25, -0.5, 0, 0.248776, 0.5, -0.0245204, 0.248776, 0.5, 0.0244714, 0.25, 0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rodi0"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hqai3"]
+material = SubResource("StandardMaterial3D_rodi0")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_5ik7n"]
+resource_name = "interact"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(0.189465, 0.25, 1),
+"update": 0,
+"values": [Vector3(0, 0.536483, 0), Vector3(0, 0.476, 0), Vector3(0, 0.536, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rpxnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.536483, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pdpkm"]
+_data = {
+"RESET": SubResource("Animation_rpxnm"),
+"interact": SubResource("Animation_5ik7n")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_k4mc7"]
+height = 0.1
+radius = 0.15
+
+[node name="Button" type="Node3D"]
+script = ExtResource("1_wpu04")
+
+[node name="Stand" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_w4468")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stand/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_vpsvw")
+
+[node name="TheButton" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536483, 0)
+mesh = SubResource("CylinderMesh_hqai3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pdpkm")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535151, 0)
+shape = SubResource("CylinderShape3D_k4mc7")

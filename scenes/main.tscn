@@ -1,11 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckyayao0xask1"]
+[gd_scene load_steps=5 format=3 uid="uid://ckyayao0xask1"]
 
 [ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="1_qht4j"]
 [ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="2_upuln"]
+[ext_resource type="PackedScene" uid="uid://cvq8tw4ub1u1s" path="res://scenes/props/door.tscn" id="3_5p2ja"]
+[ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="4_f4qsv"]
 
 [node name="World" type="Node3D"]
 
 [node name="Room" parent="." instance=ExtResource("1_qht4j")]
 
 [node name="Player" parent="." instance=ExtResource("2_upuln")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
+
+[node name="Door" parent="." instance=ExtResource("3_5p2ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1459, -3.89055)
+
+[node name="Button" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_f4qsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479271, 0.0559694)
+target = NodePath("../Door")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle" type="ColorRect" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -15.0
+offset_right = 13.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
