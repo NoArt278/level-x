@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq50myhmdsafh"]
+
+[ext_resource type="Texture2D" uid="uid://bmr4e7yqb8hjg" path="res://assets/1601.m10.i307.n008.F.c05.205439527 Vector grid marking for user HUD interface.jpg" id="1_fcu5m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1f5g"]
+shading_mode = 0
+albedo_texture = ExtResource("1_fcu5m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2v0fc"]
+material = SubResource("StandardMaterial3D_f1f5g")
+size = Vector2(8, 8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1777s"]
+points = PackedVector3Array(-4, 0, -4, -4, 0, 4, 4, 0, -4, 4, 0, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_he5p3"]
+shading_mode = 0
+albedo_texture = ExtResource("1_fcu5m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mn5q3"]
+material = SubResource("StandardMaterial3D_he5p3")
+size = Vector2(8.1, 8.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2a11v"]
+points = PackedVector3Array(-4, 0, -4, -4, 0, 4, 4, 0, -4, 4, 0, 4)
+
+[node name="Room" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2v0fc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_1777s")
+
+[node name="Ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 7.99438, 0)
+mesh = SubResource("PlaneMesh_2v0fc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ceiling"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_1777s")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.97371, -4.00307)
+mesh = SubResource("PlaneMesh_mn5q3")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2a11v")
+
+[node name="Wall2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3.98557, 3.97371, 0.00626087)
+mesh = SubResource("PlaneMesh_mn5q3")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2a11v")
+
+[node name="Wall3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.00582743, 3.97371, 3.98646)
+mesh = SubResource("PlaneMesh_mn5q3")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2a11v")
+
+[node name="Wall4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1.19249e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.19249e-08, -5.21253e-16, 3.99001, 3.97371, 0.0145352)
+mesh = SubResource("PlaneMesh_mn5q3")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2a11v")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.73541, 0)
+light_energy = 6.0
+shadow_enabled = true
+omni_range = 10.0
