@@ -18,6 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1459, -3.89055)
 [node name="Button" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_f4qsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479271, 0.0559694)
 target = NodePath("../Door")
+target_method = "_on_level_finish"
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

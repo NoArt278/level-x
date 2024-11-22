@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 
 	var result = space_state.intersect_ray(query)
 	var collider = result.get("collider")
-	if collider.get_parent() is Interactable :
+	if collider.get_parent() is Interactable and collider.get_parent().can_interact :
 		curr_interactable = collider.get_parent()
 		reticle.visible = true
 	else :

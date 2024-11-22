@@ -1,8 +1,12 @@
 extends Interactable
 
-@export var target : InteractTarget
+@export var target : Node
+@export var target_method : String
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	can_interact = true
 
 func _interact() -> void :
 	animation_player.play("interact")
-	target._on_trigger()
+	target.call(target_method)
