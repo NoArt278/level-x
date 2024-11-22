@@ -1,13 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bq50myhmdsafh"]
 
-[ext_resource type="Texture2D" uid="uid://bmr4e7yqb8hjg" path="res://assets/1601.m10.i307.n008.F.c05.205439527 Vector grid marking for user HUD interface.jpg" id="1_fcu5m"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1f5g"]
-shading_mode = 0
-albedo_texture = ExtResource("1_fcu5m")
+[ext_resource type="Texture2D" uid="uid://bmr4e7yqb8hjg" path="res://assets/textures/wall_normal.jpg" id="1_fcu5m"]
+[ext_resource type="Material" uid="uid://dfpaymuvtfrdp" path="res://assets/materials/wall_mat.tres" id="1_unura"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2v0fc"]
-material = SubResource("StandardMaterial3D_f1f5g")
+material = ExtResource("1_unura")
 size = Vector2(8, 8)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1777s"]

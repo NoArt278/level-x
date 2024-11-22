@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmr4e7yqb8hjg"
-path.s3tc="res://.godot/imported/1601.m10.i307.n008.F.c05.205439527 Vector grid marking for user HUD interface.jpg-177823ecc5b1f39811bf05f7b54e94aa.s3tc.ctex"
+path.s3tc="res://.godot/imported/wall_normal.jpg-2694a7359a33b23cc8687f50130fa584.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/1601.m10.i307.n008.F.c05.205439527 Vector grid marking for user HUD interface.jpg"
-dest_files=["res://.godot/imported/1601.m10.i307.n008.F.c05.205439527 Vector grid marking for user HUD interface.jpg-177823ecc5b1f39811bf05f7b54e94aa.s3tc.ctex"]
+source_file="res://assets/textures/wall_normal.jpg"
+dest_files=["res://.godot/imported/wall_normal.jpg-2694a7359a33b23cc8687f50130fa584.s3tc.ctex"]
 
 [params]
 

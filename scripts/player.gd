@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	mouse_pos_delta = Vector2.ZERO
 	# raycast
 	var space_state = get_world_3d().direct_space_state
-	var mousepos = get_viewport().get_mouse_position()
+	var mousepos = get_viewport().get_visible_rect().size / 2.0
 
 	var origin = camera_3d.project_ray_origin(mousepos)
 	var end = origin + camera_3d.project_ray_normal(mousepos) * RAY_LENGTH
