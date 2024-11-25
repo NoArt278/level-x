@@ -84,6 +84,6 @@ shape = SubResource("ConvexPolygonShape3D_2a11v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.73541, 0)
-light_energy = 6.0
+light_energy = 6.256
 shadow_enabled = true
-omni_range = 10.0
+omni_range = 12.209

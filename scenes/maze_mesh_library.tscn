@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsijn464tt63f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_athar"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_naak6"]
+material = SubResource("StandardMaterial3D_athar")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_keggx"]
+points = PackedVector3Array(0.1, 0.1, 0, 0.1, -0.1, 0, -0.1, 0.1, 0, -0.1, -0.1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hckim"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_776di"]
+material = SubResource("StandardMaterial3D_hckim")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdyf7"]
+points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
+
+[node name="MazeMeshLibrary" type="Node3D"]
+
+[node name="MazeFloor" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_naak6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MazeFloor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeFloor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_keggx")
+
+[node name="MazeWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.220096, 0, 0)
+mesh = SubResource("BoxMesh_776di")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MazeWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeWall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jdyf7")

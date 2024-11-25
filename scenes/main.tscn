@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckyayao0xask1"]
+[gd_scene load_steps=6 format=3 uid="uid://ckyayao0xask1"]
 
 [ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="1_qht4j"]
 [ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="2_upuln"]
 [ext_resource type="PackedScene" uid="uid://cvq8tw4ub1u1s" path="res://scenes/props/door.tscn" id="3_5p2ja"]
 [ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="4_f4qsv"]
+[ext_resource type="PackedScene" uid="uid://yifmmgi2wrgn" path="res://scenes/maze.tscn" id="5_hq7g6"]
 
 [node name="World" type="Node3D"]
 
@@ -61,3 +62,7 @@ grow_vertical = 0
 theme_override_colors/default_color = Color(0, 0.815686, 1, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "E to interact"
+
+[node name="Maze" parent="." instance=ExtResource("5_hq7g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.015)
+maze_size = 20
