@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsijn464tt63f"]
+[gd_scene load_steps=11 format=3 uid="uid://bsijn464tt63f"]
+
+[ext_resource type="Script" path="res://scripts/maze_finish.gd" id="1_76ltc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_athar"]
 
@@ -18,6 +20,16 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdyf7"]
 points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y15hm"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cmmjo"]
+material = SubResource("StandardMaterial3D_y15hm")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttvej"]
+size = Vector3(0.2, 0.2, 0.2)
+
 [node name="MazeMeshLibrary" type="Node3D"]
 
 [node name="MazeFloor" type="MeshInstance3D" parent="."]
@@ -36,3 +48,21 @@ mesh = SubResource("BoxMesh_776di")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MazeWall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_jdyf7")
+
+[node name="MazeFinish" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("QuadMesh_cmmjo")
+script = ExtResource("1_76ltc")
+can_interact = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MazeFinish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeFinish/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_keggx")
+
+[node name="Area3D" type="Area3D" parent="MazeFinish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeFinish/Area3D"]
+shape = SubResource("BoxShape3D_ttvej")
+
+[connection signal="body_entered" from="MazeFinish/Area3D" to="MazeFinish" method="_on_area_3d_body_entered"]

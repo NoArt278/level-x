@@ -1,12 +1,15 @@
 extends Interactable
 
-@export var target : Node
-@export var target_method : String
+@export var button_color : Color = Color.RED
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var the_button: MeshInstance3D = $TheButton
 
 func _ready() -> void:
 	can_interact = true
+	var button_material = the_button.mesh.material.duplicate()
+	button_material.albedo_color = button_color
+	the_button.mesh.material = button_material
 
 func _interact() -> void :
 	animation_player.play("interact")
-	target.call(target_method)
+	target.callv(target_method, params)
