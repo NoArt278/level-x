@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsijn464tt63f"]
+[gd_scene load_steps=10 format=3 uid="uid://bsijn464tt63f"]
 
-[ext_resource type="PackedScene" uid="uid://ffvo84bbbqig" path="res://scenes/maze_finish.tscn" id="1_nbmph"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33nbq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_athar"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_naak6"]
-material = SubResource("StandardMaterial3D_athar")
-size = Vector2(0.2, 0.2)
+[sub_resource type="BoxMesh" id="BoxMesh_ll2n8"]
+material = SubResource("StandardMaterial3D_33nbq")
+size = Vector3(0.2, 0.2, 0.01)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_keggx"]
 points = PackedVector3Array(0.1, 0.1, 0, 0.1, -0.1, 0, -0.1, 0.1, 0, -0.1, -0.1, 0)
@@ -20,10 +18,21 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jdyf7"]
 points = PackedVector3Array(0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv3gx"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xdt54"]
+material = SubResource("StandardMaterial3D_lv3gx")
+size = Vector3(0.2, 0.2, 0.01)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q2mj0"]
+points = PackedVector3Array(0.1, 0.1, 0.005, 0.1, 0.1, -0.005, -0.1, 0.1, 0.005, 0.1, -0.1, 0.005, 0.1, -0.1, -0.005, -0.1, 0.1, -0.005, -0.1, -0.1, 0.005, -0.1, -0.1, -0.005)
+
 [node name="MazeMeshLibrary" type="Node3D"]
 
 [node name="MazeFloor" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_naak6")
+mesh = SubResource("BoxMesh_ll2n8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MazeFloor"]
 
@@ -39,4 +48,12 @@ mesh = SubResource("BoxMesh_776di")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MazeWall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_jdyf7")
 
-[node name="MazeFinish" parent="." instance=ExtResource("1_nbmph")]
+[node name="MazeFinish" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.449318, 0, 0)
+mesh = SubResource("BoxMesh_xdt54")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MazeFinish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MazeFinish/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_q2mj0")

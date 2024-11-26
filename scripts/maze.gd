@@ -8,6 +8,8 @@ const CELL_SIZE = 0.2
 var dirs = [Vector3i.RIGHT, Vector3i.DOWN, Vector3i.LEFT, Vector3i.UP]
 @onready var ball: RigidBody3D = %Ball
 const MAZE_FINISH = preload("res://scenes/maze_finish.tscn")
+var rotate_tween
+var target_angle = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,6 +59,9 @@ func _ready() -> void:
 	maze_finish_area.position = map_to_local(last_floor_coord)
 
 func rotate_maze(angle : float) -> void:
-	var rotate_tween = create_tween()
-	rotate_tween.tween_property(self, "rotation_degrees", Vector3(0,0, rotation_degrees.z + angle), 1)
+	if rotate_tween :
+		rotate_tween.kill()
+	target_angle += angle
+	rotate_tween = create_tween()
+	rotate_tween.tween_property(self, "rotation_degrees", Vector3(0,0, target_angle), 1)
 	await rotate_tween.finished
