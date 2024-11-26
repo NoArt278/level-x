@@ -2,6 +2,9 @@ extends MeshInstance3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+func _ready() -> void:
+	add_to_group("targets")
+
 func _on_level_finish() -> void :
 	if not(visible) :
 		visible = true

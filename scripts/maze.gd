@@ -7,6 +7,7 @@ const FINISH_IDX = 2
 const CELL_SIZE = 0.2
 var dirs = [Vector3i.RIGHT, Vector3i.DOWN, Vector3i.LEFT, Vector3i.UP]
 @onready var ball: RigidBody3D = %Ball
+const MAZE_FINISH = preload("res://scenes/maze_finish.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,6 +52,9 @@ func _ready() -> void:
 			set_cell_item(curr_coord, WALL_IDX)
 	position.y = CELL_SIZE * maze_size
 	set_cell_item(last_floor_coord, FINISH_IDX)
+	var maze_finish_area = MAZE_FINISH.instantiate()
+	add_child(maze_finish_area)
+	maze_finish_area.position = map_to_local(last_floor_coord)
 
 func rotate_maze(angle : float) -> void:
 	var rotate_tween = create_tween()
