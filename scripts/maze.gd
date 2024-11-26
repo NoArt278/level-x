@@ -7,12 +7,15 @@ const FINISH_IDX = 2
 const CELL_SIZE = 0.2
 var dirs = [Vector3i.RIGHT, Vector3i.DOWN, Vector3i.LEFT, Vector3i.UP]
 @onready var ball: RigidBody3D = %Ball
+@onready var back_cover: MeshInstance3D = $BackCover
 const MAZE_FINISH = preload("res://scenes/maze_finish.tscn")
 var rotate_tween
 var target_angle = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	back_cover.mesh.size.x = (maze_size + 2) * CELL_SIZE
+	back_cover.mesh.size.y = (maze_size + 2) * CELL_SIZE
 	# Spawn maze
 	# Generate walls
 	var curr_coord = Vector3i(maze_size/2 * -1 -1, maze_size/2 + 1, 0)

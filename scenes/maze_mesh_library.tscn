@@ -32,6 +32,7 @@ points = PackedVector3Array(0.1, 0.1, 0.005, 0.1, 0.1, -0.005, -0.1, 0.1, 0.005,
 [node name="MazeMeshLibrary" type="Node3D"]
 
 [node name="MazeFloor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0929277)
 mesh = SubResource("BoxMesh_ll2n8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MazeFloor"]
