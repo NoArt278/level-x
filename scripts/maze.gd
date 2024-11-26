@@ -35,9 +35,10 @@ func _ready() -> void:
 			if i % 2 != 0 and j % 2 != 0 :
 				set_cell_item(Vector3i(i,j,0), WALL_IDX)
 	var open_coords = [curr_coord]
+	var start_coord = curr_coord
 	var visited = []
 	var is_backtrack = false
-	var last_floor_coord = curr_coord
+	var last_floor_coord = start_coord
 	ball.position = map_to_local(curr_coord) + Vector3i.BACK * 0.05
 	ball.call_deferred("reparent", $"..")
 	while not(open_coords.is_empty()) :
@@ -46,7 +47,8 @@ func _ready() -> void:
 			continue
 		visited.push_front(curr_coord)
 		set_cell_item(curr_coord, FLOOR_IDX)
-		last_floor_coord = curr_coord
+		if randf() <= 0.4 :
+			last_floor_coord = curr_coord
 		dirs.shuffle()
 		var new_path_found = false
 		for dir in dirs :
@@ -55,6 +57,8 @@ func _ready() -> void:
 				open_coords.push_front(curr_coord + dir)
 		if not(new_path_found) :
 			set_cell_item(curr_coord, WALL_IDX)
+	if last_floor_coord == start_coord :
+		last_floor_coord = curr_coord
 	position.y = CELL_SIZE * maze_size
 	set_cell_item(last_floor_coord, FINISH_IDX)
 	var maze_finish_area = MAZE_FINISH.instantiate()
