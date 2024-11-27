@@ -12,3 +12,4 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.name.contains("Ball") :
 		_interact()
 		level_manager.add_advance_level()
+		GameManager.maze_finish_count += 1

@@ -17,6 +17,9 @@ func _ready() -> void:
 	maze_size = GameManager.maze_size
 	var cover_scale = (maze_size + 2) * CELL_SIZE / 2
 	back_cover.global_scale(Vector3(cover_scale, cover_scale, 1))
+	generate_maze()
+
+func generate_maze() -> void:
 	# Spawn maze
 	# Generate walls
 	var curr_coord = Vector3i(maze_size/2 * -1 -1, maze_size/2 + 1, 0)
@@ -59,14 +62,29 @@ func _ready() -> void:
 		if not(new_path_found) :
 			set_cell_item(curr_coord, WALL_IDX)
 	if last_floor_coord == start_coord :
-		last_floor_coord = curr_coord
-	position.y = CELL_SIZE * maze_size /1.15
-	if maze_size < 14 :
-		position.y += 0.4
-	set_cell_item(last_floor_coord, FINISH_IDX)
-	var maze_finish_area = MAZE_FINISH.instantiate()
-	add_child(maze_finish_area)
-	maze_finish_area.position = map_to_local(last_floor_coord)
+		# Regenerate maze
+		generate_maze()
+	else : 
+		position.y = CELL_SIZE * maze_size /1.15
+		if maze_size < 14 :
+			position.y += 0.4
+		set_cell_item(last_floor_coord, FINISH_IDX)
+		var maze_finish_area = MAZE_FINISH.instantiate()
+		add_child(maze_finish_area)
+		maze_finish_area.position = map_to_local(last_floor_coord)
+		# Generate other finishes if there's > 1 finish
+		var used_cells = get_used_cells()
+		var finishes_left = GameManager.maze_finish_count - 1
+		while finishes_left > 0 and used_cells.size() > 0 :
+			var picked_cell = used_cells.pick_random()
+			if get_cell_item(picked_cell) == FLOOR_IDX :
+				set_cell_item(picked_cell, FINISH_IDX)
+				maze_finish_area = MAZE_FINISH.instantiate()
+				add_child(maze_finish_area)
+				maze_finish_area.position = map_to_local(picked_cell)
+				finishes_left -= 1
+			used_cells.erase(picked_cell)
+		GameManager.maze_finish_count = 0
 
 func rotate_maze(angle : float) -> void:
 	if rotate_tween :
