@@ -8,6 +8,7 @@ size = Vector3(0.2, 0.2, 0.2)
 [node name="MazeFinishArea" type="Area3D"]
 script = ExtResource("1_mk118")
 target_method = "_on_level_finish"
+params = [false]
 can_interact = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

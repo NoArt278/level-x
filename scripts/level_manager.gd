@@ -4,6 +4,7 @@ var advance_level_amount : int = 0
 var advance_level_per_goal : int = 1
 @onready var button: Node3D = $Room/Button
 @onready var button_2: Node3D = $Room/Button2
+@onready var button_3: Node3D = $Room/Button3
 
 func _ready() -> void:
 	advance_level_per_goal += (GameManager.maze_size / 2) - 4
@@ -13,3 +14,8 @@ func add_advance_level() :
 
 func advance_level() :
 	GameManager.advance_level(advance_level_amount)
+
+
+func _on_skip_timer_timeout() -> void:
+	var skip_spawn_tween = button_3.create_tween()
+	skip_spawn_tween.tween_property(button_3, "position", Vector3(button_3.position.x, 0.749, button_3.position.z), 1.5)

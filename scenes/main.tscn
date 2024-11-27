@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckyayao0xask1"]
+[gd_scene load_steps=17 format=3 uid="uid://ckyayao0xask1"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_56aa7"]
 [ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="1_qht4j"]
@@ -27,6 +27,14 @@ material = SubResource("StandardMaterial3D_0mdy4")
 text = "Level"
 font_size = 32
 autowrap_mode = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5iah"]
+shading_mode = 0
+
+[sub_resource type="TextMesh" id="TextMesh_gi436"]
+material = SubResource("StandardMaterial3D_b5iah")
+text = "SKIP"
+font_size = 12
 
 [node name="LevelManager" type="Node3D"]
 script = ExtResource("1_56aa7")
@@ -68,6 +76,17 @@ button_color = Color(0, 0, 1, 1)
 target = NodePath("../Maze")
 target_method = "rotate_maze"
 params = [-45.0]
+
+[node name="Button3" parent="Room" node_paths=PackedStringArray("target") instance=ExtResource("6_xdafp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00318909, -0.864028, 0.0489728)
+button_color = Color(0, 1, 0, 1)
+target = NodePath("../Door")
+target_method = "_on_level_finish"
+params = [true]
+
+[node name="Skip Text" type="MeshInstance3D" parent="Room/Button3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00559723, 0.552545, 0.197618)
+mesh = SubResource("TextMesh_gi436")
 
 [node name="Player" parent="." instance=ExtResource("2_upuln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
@@ -113,3 +132,10 @@ grow_vertical = 0
 theme_override_colors/default_color = Color(0, 0.815686, 1, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "E to interact"
+
+[node name="SkipTimer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SkipTimer" to="." method="_on_skip_timer_timeout"]
