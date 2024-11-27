@@ -1,0 +1,238 @@
+[gd_scene load_steps=16 format=3 uid="uid://byhx4xxwa4vbd"]
+
+[ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="1_cban8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c8wnm"]
+sky_top_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+energy_multiplier = 128.0
+
+[sub_resource type="Sky" id="Sky_wi8j7"]
+sky_material = SubResource("ProceduralSkyMaterial_c8wnm")
+
+[sub_resource type="Environment" id="Environment_76sid"]
+background_mode = 2
+sky = SubResource("Sky_wi8j7")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_06yfr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa4mo"]
+shading_mode = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rd1ro"]
+material = SubResource("StandardMaterial3D_xa4mo")
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjggw"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_148jp"]
+material = SubResource("StandardMaterial3D_jjggw")
+text = "CONGRATULATIONS ! YOU BEAT THE GAME !
+THANKS FOR PLAYING !
+"
+font_size = 27
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y1t4"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_tfepn"]
+material = SubResource("StandardMaterial3D_5y1t4")
+text = "MADE BY : NoArt278
+Game Off 2024"
+font_size = 27
+
+[sub_resource type="TextMesh" id="TextMesh_jvtgk"]
+material = SubResource("StandardMaterial3D_5y1t4")
+text = "CREDITS : 
+"
+font_size = 27
+
+[sub_resource type="Animation" id="Animation_701b6"]
+resource_name = "finish"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Congrats Message:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.96003, 6.96003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -4.45136, -5.0389), Vector3(0, 2.48642, -5.0389)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Made by:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.96003, 7.96003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -5.37085, -5.0389), Vector3(0, 1.62915, -5.0389)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.96003, 9.96003),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -6.17085, -5.0389), Vector3(0, 1.124, -5.039)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.03333),
+"transitions": PackedFloat32Array(0.435276, 1.86607),
+"update": 0,
+"values": [128.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_x4wcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Congrats Message:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -4.45136, -5.0389)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Made by:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -5.37085, -5.0389)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -6.17085, -5.0389)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [128.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ded1"]
+_data = {
+"RESET": SubResource("Animation_x4wcs"),
+"finish": SubResource("Animation_701b6")
+}
+
+[node name="Finish" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_cban8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954744, 0)
+
+[node name="Camera3D" parent="Player" index="1"]
+environment = SubResource("Environment_76sid")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_06yfr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_rd1ro")
+
+[node name="Congrats Message" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.45136, -5.0389)
+mesh = SubResource("TextMesh_148jp")
+
+[node name="Made by" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -0.000506145, 0, 0.000506145, 1, 0, 0, 0, 1, 0, -5.37085, -5.0389)
+mesh = SubResource("TextMesh_tfepn")
+
+[node name="Credits" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -0.000506145, 0, 0.000506145, 1, 0, 0, 0, 1, 0, -6.17085, -5.0389)
+mesh = SubResource("TextMesh_jvtgk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8ded1")
+}
+autoplay = "finish"
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle" type="ColorRect" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -15.0
+offset_right = 13.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Reticle"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = 13.0
+offset_right = 90.5
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0.815686, 1, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "E to interact"
+
+[editable path="Player"]

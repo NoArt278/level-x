@@ -8,7 +8,7 @@ const CELL_SIZE = 0.2
 var dirs = [Vector3i.RIGHT, Vector3i.DOWN, Vector3i.LEFT, Vector3i.UP]
 @onready var ball: RigidBody3D = %Ball
 @onready var back_cover: MeshInstance3D = $BackCover
-const MAZE_FINISH = preload("res://scenes/maze_finish.tscn")
+const MAZE_FINISH = preload("res://scenes/props/maze_finish.tscn")
 var rotate_tween
 var target_angle = 0
 

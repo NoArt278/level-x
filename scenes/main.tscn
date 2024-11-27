@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="2_upuln"]
 [ext_resource type="PackedScene" uid="uid://cvq8tw4ub1u1s" path="res://scenes/props/door.tscn" id="3_5p2ja"]
 [ext_resource type="Script" path="res://scripts/room.gd" id="4_e0l23"]
-[ext_resource type="PackedScene" uid="uid://yifmmgi2wrgn" path="res://scenes/maze.tscn" id="5_hq7g6"]
+[ext_resource type="PackedScene" uid="uid://yifmmgi2wrgn" path="res://scenes/props/maze.tscn" id="5_hq7g6"]
 [ext_resource type="Script" path="res://scripts/level_text.gd" id="6_ddlbn"]
-[ext_resource type="PackedScene" uid="uid://cgol4dhl06mo8" path="res://scenes/ball.tscn" id="6_iv0br"]
+[ext_resource type="PackedScene" uid="uid://cgol4dhl06mo8" path="res://scenes/props/ball.tscn" id="6_iv0br"]
 [ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="6_xdafp"]
 [ext_resource type="Script" path="res://scripts/hint_text.gd" id="7_fellx"]
 

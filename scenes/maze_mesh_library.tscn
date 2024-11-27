@@ -1,6 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bsijn464tt63f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33nbq"]
+shading_mode = 0
+albedo_color = Color(0.877616, 0.877616, 0.877616, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ll2n8"]
 material = SubResource("StandardMaterial3D_33nbq")
@@ -10,6 +12,8 @@ size = Vector3(0.2, 0.2, 0.01)
 points = PackedVector3Array(0.1, 0.1, 0, 0.1, -0.1, 0, -0.1, 0.1, 0, -0.1, -0.1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hckim"]
+shading_mode = 0
+albedo_color = Color(0.230315, 0.230315, 0.230315, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_776di"]
 material = SubResource("StandardMaterial3D_hckim")
