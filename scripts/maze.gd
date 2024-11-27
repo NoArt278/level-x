@@ -15,8 +15,8 @@ var target_angle = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	maze_size = GameManager.maze_size
-	back_cover.mesh.size.x = (maze_size + 2) * CELL_SIZE
-	back_cover.mesh.size.y = (maze_size + 2) * CELL_SIZE
+	var cover_scale = (maze_size + 2) * CELL_SIZE / 2
+	back_cover.global_scale(Vector3(cover_scale, cover_scale, 1))
 	# Spawn maze
 	# Generate walls
 	var curr_coord = Vector3i(maze_size/2 * -1 -1, maze_size/2 + 1, 0)
