@@ -109,7 +109,7 @@ cell_size = Vector3(0.2, 0.2, 0.2)
 script = ExtResource("1_wdsrq")
 
 [node name="BackCover" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.05)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.08, 0.08, -0.01)
 mesh = SubResource("PlaneMesh_2iob5")
 
 [node name="AddButton" type="MeshInstance3D" parent="BackCover" node_paths=PackedStringArray("target")]
