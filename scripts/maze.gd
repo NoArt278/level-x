@@ -48,7 +48,7 @@ func _ready() -> void:
 			continue
 		visited.push_front(curr_coord)
 		set_cell_item(curr_coord, FLOOR_IDX)
-		if randf() <= 0.4 :
+		if last_floor_coord.distance_to(start_coord) < curr_coord.distance_to(start_coord) :
 			last_floor_coord = curr_coord
 		dirs.shuffle()
 		var new_path_found = false

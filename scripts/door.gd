@@ -1,7 +1,7 @@
 extends MeshInstance3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var level_manager: Node3D = $".."
+@onready var level_manager: Node3D = $"../.."
 
 func _ready() -> void:
 	add_to_group("targets")
