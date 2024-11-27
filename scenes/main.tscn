@@ -1,22 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckyayao0xask1"]
+[gd_scene load_steps=11 format=3 uid="uid://ckyayao0xask1"]
 
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_56aa7"]
 [ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="1_qht4j"]
 [ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="2_upuln"]
 [ext_resource type="PackedScene" uid="uid://cvq8tw4ub1u1s" path="res://scenes/props/door.tscn" id="3_5p2ja"]
 [ext_resource type="PackedScene" uid="uid://yifmmgi2wrgn" path="res://scenes/maze.tscn" id="5_hq7g6"]
+[ext_resource type="Script" path="res://scripts/level_text.gd" id="6_ddlbn"]
 [ext_resource type="PackedScene" uid="uid://cgol4dhl06mo8" path="res://scenes/ball.tscn" id="6_iv0br"]
 [ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="6_xdafp"]
 
-[node name="World" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjq0m"]
+shading_mode = 0
 
-[node name="Room" parent="." instance=ExtResource("1_qht4j")]
+[sub_resource type="TextMesh" id="TextMesh_j3bvm"]
+material = SubResource("StandardMaterial3D_pjq0m")
+text = "Level"
+font_size = 48
 
-[node name="Player" parent="." instance=ExtResource("2_upuln")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
+[node name="LevelManager" type="Node3D"]
+script = ExtResource("1_56aa7")
 
 [node name="Door" parent="." instance=ExtResource("3_5p2ja")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1459, -3.89055)
+
+[node name="Room" parent="." instance=ExtResource("1_qht4j")]
+
+[node name="Maze" parent="Room" instance=ExtResource("5_hq7g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.015)
+
+[node name="Ball" parent="Room/Maze" instance=ExtResource("6_iv0br")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954634, 1.015)
+
+[node name="LevelText" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -1.86588, 1.39769, 0.541083)
+mesh = SubResource("TextMesh_j3bvm")
+script = ExtResource("6_ddlbn")
+
+[node name="Player" parent="." instance=ExtResource("2_upuln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -60,22 +83,15 @@ theme_override_colors/default_color = Color(0, 0.815686, 1, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "E to interact"
 
-[node name="Maze" parent="." instance=ExtResource("5_hq7g6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.015)
-
-[node name="Ball" parent="Maze" instance=ExtResource("6_iv0br")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954634, 1.015)
-
 [node name="Button" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_xdafp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405408, 0.749014, 0.42551)
-target = NodePath("../Maze")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.513669, 0.749014, 0.42551)
+target = NodePath("../Room/Maze")
 target_method = "rotate_maze"
 params = [45.0]
 
 [node name="Button2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_xdafp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.385207, 0.749014, 0.42551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528635, 0.749014, 0.42551)
 button_color = Color(0, 0, 1, 1)
-target = NodePath("../Maze")
+target = NodePath("../Room/Maze")
 target_method = "rotate_maze"
 params = [-45.0]

@@ -1,6 +1,6 @@
 extends GridMap
 
-@export var maze_size = 16
+var maze_size
 const FLOOR_IDX = 0
 const WALL_IDX = 1
 const FINISH_IDX = 2
@@ -14,6 +14,7 @@ var target_angle = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	maze_size = GameManager.maze_size
 	back_cover.mesh.size.x = (maze_size + 2) * CELL_SIZE
 	back_cover.mesh.size.y = (maze_size + 2) * CELL_SIZE
 	# Spawn maze
@@ -59,7 +60,9 @@ func _ready() -> void:
 			set_cell_item(curr_coord, WALL_IDX)
 	if last_floor_coord == start_coord :
 		last_floor_coord = curr_coord
-	position.y = CELL_SIZE * maze_size
+	position.y = CELL_SIZE * maze_size /1.15
+	if maze_size < 14 :
+		position.y += 0.4
 	set_cell_item(last_floor_coord, FINISH_IDX)
 	var maze_finish_area = MAZE_FINISH.instantiate()
 	add_child(maze_finish_area)
@@ -72,3 +75,9 @@ func rotate_maze(angle : float) -> void:
 	rotate_tween = create_tween()
 	rotate_tween.tween_property(self, "rotation_degrees", Vector3(0,0, target_angle), 1)
 	await rotate_tween.finished
+
+func change_maze_size(is_increase : bool) -> void:
+	if is_increase and GameManager.maze_size < 24 :
+		GameManager.maze_size += 2
+	elif not(is_increase) and GameManager.maze_size > 8 :
+		GameManager.maze_size -= 2

@@ -39,7 +39,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5ik7n"]
 resource_name = "interact"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,7 +47,7 @@ tracks/0/path = NodePath("TheButton:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5),
+"times": PackedFloat32Array(0, 0.133333, 0.233333),
 "transitions": PackedFloat32Array(0.189465, 0.25, 1),
 "update": 0,
 "values": [Vector3(0, 0.544294, 0.121366), Vector3(0, 0.544, 0.07), Vector3(0, 0.544, 0.121)]
@@ -86,5 +86,5 @@ libraries = {
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.535151, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.544, 0.123)
 shape = SubResource("CylinderShape3D_k4mc7")
