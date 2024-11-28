@@ -15,6 +15,9 @@ radius = 0.075
 [node name="Ball" type="RigidBody3D"]
 axis_lock_linear_z = true
 mass = 3.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_lx6h8")

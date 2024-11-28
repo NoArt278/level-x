@@ -125,6 +125,25 @@ transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0593293)
 shape = SubResource("BoxShape3D_7bdgm")
 
+[node name="OtherTexts" type="Node3D" parent="Room"]
+
+[node name="LookBehindText" type="Label3D" parent="Room/OtherTexts"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.797, 3.089)
+double_sided = false
+outline_modulate = Color(0, 0, 0, 0)
+text = "You should look 
+behind more often"
+font_size = 36
+
+[node name="LookUpText" type="Label3D" parent="Room/OtherTexts"]
+transform = Transform3D(1, 5.14505e-09, 3.90806e-08, 3.90806e-08, -0.258819, -0.965926, 5.14505e-09, 0.965926, -0.258819, 0, 7.14554, 0)
+double_sided = false
+outline_modulate = Color(0, 0, 0, 0)
+text = "Finally looked up, eh ?
+Are you sure you're 
+a gamer ?"
+font_size = 36
+
 [node name="Player" parent="." instance=ExtResource("2_upuln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
 
@@ -175,4 +194,5 @@ wait_time = 90.0
 one_shot = true
 autostart = true
 
+[connection signal="body_entered" from="Room/Maze/Ball" to="." method="_on_ball_body_entered"]
 [connection signal="timeout" from="SkipTimer" to="." method="_on_skip_timer_timeout"]
