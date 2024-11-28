@@ -1,13 +1,16 @@
 extends Interactable
 
+class_name InteractButton
+
 @export var button_color : Color = Color.RED
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var the_button:  = $TheButton
+var button_material
 
 func _ready() -> void:
 	can_interact = true
 	if the_button :
-		var button_material = the_button.mesh.material.duplicate()
+		button_material = the_button.mesh.material.duplicate()
 		button_material.albedo_color = button_color
 		the_button.mesh.material = button_material
 

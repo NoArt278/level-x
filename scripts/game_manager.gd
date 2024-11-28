@@ -1,10 +1,11 @@
 extends Node
 
-var level = 0
-var room_count = 1
-var maze_size = 8
-var maze_finish_count = 1
-var skip_count = 0
+var level : int = 0
+var room_count : int = 1
+var maze_size : int = 8
+var maze_finish_count : int = 1
+var skip_count : int = 0
+var rotate_room : bool = false
 
 func advance_level(amount: int) -> void :
 	level += amount

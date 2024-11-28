@@ -44,7 +44,7 @@ func generate_maze() -> void:
 	var is_backtrack = false
 	var last_floor_coord = start_coord
 	ball.position = map_to_local(curr_coord) + Vector3i.BACK * 0.05
-	ball.call_deferred("reparent", $"..")
+	ball.call_deferred("reparent", $"../..")
 	while not(open_coords.is_empty()) :
 		curr_coord = open_coords.pop_front()
 		if visited.has(curr_coord) or get_cell_item(curr_coord) == WALL_IDX :

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckyayao0xask1"]
+[gd_scene load_steps=22 format=3 uid="uid://ckyayao0xask1"]
 
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_56aa7"]
 [ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="1_qht4j"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cgol4dhl06mo8" path="res://scenes/props/ball.tscn" id="6_iv0br"]
 [ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="6_xdafp"]
 [ext_resource type="Script" path="res://scripts/hint_text.gd" id="7_fellx"]
+[ext_resource type="Script" path="res://scripts/rotate_room_button.gd" id="10_uwhqi"]
+[ext_resource type="Texture2D" uid="uid://bewhlacag1r8y" path="res://assets/textures/352901_rotate_rotation_icon.png" id="10_y7di5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjq0m"]
 shading_mode = 0
@@ -35,6 +37,16 @@ shading_mode = 0
 material = SubResource("StandardMaterial3D_b5iah")
 text = "SKIP"
 font_size = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oa18c"]
+shading_mode = 0
+albedo_color = Color(0.201527, 0.201527, 0.201527, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_w8bso"]
+material = SubResource("StandardMaterial3D_oa18c")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7bdgm"]
+size = Vector3(1, 1, 0.108893)
 
 [node name="LevelManager" type="Node3D"]
 script = ExtResource("1_56aa7")
@@ -87,6 +99,31 @@ params = [true]
 [node name="Skip Text" type="MeshInstance3D" parent="Room/Button3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00559723, 0.552545, 0.197618)
 mesh = SubResource("TextMesh_gi436")
+
+[node name="RotateRoomButton2" type="Node3D" parent="Room" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42645, 7.27227, 0)
+script = ExtResource("10_uwhqi")
+button_color = Color(0.2, 0.2, 0.2, 1)
+target = NodePath("../..")
+target_method = "set_rotate_room"
+
+[node name="TheButton" type="MeshInstance3D" parent="Room/RotateRoomButton2"]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_w8bso")
+skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="Room/RotateRoomButton2/TheButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.005)
+pixel_size = 0.002
+double_sided = false
+texture = ExtResource("10_y7di5")
+
+[node name="Area3D" type="Area3D" parent="Room/RotateRoomButton2"]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RotateRoomButton2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0593293)
+shape = SubResource("BoxShape3D_7bdgm")
 
 [node name="Player" parent="." instance=ExtResource("2_upuln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 2.54741)
