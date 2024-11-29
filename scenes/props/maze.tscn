@@ -26,14 +26,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AddButton:mesh:material:albedo_color")
+tracks/0/path = NodePath("AddButton/TheButton:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jno4g"]
@@ -42,14 +42,14 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AddButton:mesh:material:albedo_color")
+tracks/0/path = NodePath("AddButton/TheButton:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.233333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 0, 1)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0127805), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_loe2t"]
@@ -71,14 +71,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Vector3(0.421931, -2.79397e-09, 0.0590495)]
 }
 
 [sub_resource type="Animation" id="Animation_pvhx5"]
@@ -87,14 +87,14 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.233333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 0, 1)]
+"values": [Vector3(0.421931, -2.79397e-09, 0.0590495), Vector3(0.422, -0.013, 0.059), Vector3(0.422, 0, 0.059)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hdn51"]
@@ -112,14 +112,17 @@ script = ExtResource("1_wdsrq")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.08, 0.08, -0.01)
 mesh = SubResource("PlaneMesh_2iob5")
 
-[node name="AddButton" type="MeshInstance3D" parent="BackCover" node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.378069, -7.18325e-10, 0.0164334)
-mesh = SubResource("TextMesh_7vfkl")
-skeleton = NodePath("../..")
+[node name="AddButton" type="Node3D" parent="BackCover" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.378069, -9.31323e-10, 0.0164334)
 script = ExtResource("3_3etfe")
+button_color = Color(0, 0, 0, 1)
 target = NodePath("../..")
 target_method = "change_maze_size"
 params = [true]
+
+[node name="TheButton" type="MeshInstance3D" parent="BackCover/AddButton"]
+mesh = SubResource("TextMesh_7vfkl")
+skeleton = NodePath("../../..")
 
 [node name="Area3D" type="Area3D" parent="BackCover/AddButton"]
 
@@ -132,14 +135,17 @@ libraries = {
 "": SubResource("AnimationLibrary_loe2t")
 }
 
-[node name="MinusButton" type="MeshInstance3D" parent="BackCover" node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.421931, -2.58114e-09, 0.0590495)
-mesh = SubResource("TextMesh_bjtgf")
-skeleton = NodePath("../..")
+[node name="MinusButton" type="Node3D" parent="BackCover" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.421931, -2.79397e-09, 0.0590495)
 script = ExtResource("3_3etfe")
+button_color = Color(0, 0, 0, 1)
 target = NodePath("../..")
 target_method = "change_maze_size"
 params = [false]
+
+[node name="MinusButton" type="MeshInstance3D" parent="BackCover/MinusButton"]
+mesh = SubResource("TextMesh_bjtgf")
+skeleton = NodePath("../../..")
 
 [node name="Area3D" type="Area3D" parent="BackCover/MinusButton"]
 
@@ -147,6 +153,7 @@ params = [false]
 shape = SubResource("BoxShape3D_yhkm5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BackCover/MinusButton"]
+root_node = NodePath("../MinusButton")
 libraries = {
 "": SubResource("AnimationLibrary_hdn51")
 }
