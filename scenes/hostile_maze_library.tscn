@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://f5huw5kwkmnw"]
+[gd_scene load_steps=14 format=3 uid="uid://f5huw5kwkmnw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfdxj"]
 shading_mode = 0
@@ -7,9 +7,14 @@ shading_mode = 0
 material = SubResource("StandardMaterial3D_rfdxj")
 size = Vector2(4, 4)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_lj808"]
-vertices = PackedVector3Array(2, 0, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2)
-polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+[sub_resource type="NavigationMesh" id="NavigationMesh_ktxq6"]
+vertices = PackedVector3Array(-0.25, 0.5, -0.25, -0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, -0.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 3.75
+agent_radius = 1.75
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ik3jr"]
+size = Vector2(4, 4)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_55mqi"]
 points = PackedVector3Array(-2, 0, -2, -2, 0, 2, 2, 0, -2, 2, 0, 2)
@@ -36,9 +41,14 @@ size = Vector2(4, 4)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0mwg"]
 points = PackedVector3Array(-2, 0, -2, -2, 0, 2, 2, 0, -2, 2, 0, 2)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_lhxqf"]
-vertices = PackedVector3Array(2, 0, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2)
-polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+[sub_resource type="NavigationMesh" id="NavigationMesh_p8sgl"]
+vertices = PackedVector3Array(-0.25, 0.5, -0.25, -0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, -0.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 3.75
+agent_radius = 1.75
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m5p6w"]
+size = Vector2(4, 4)
 
 [node name="HostileMazeLibrary" type="Node3D"]
 
@@ -46,7 +56,10 @@ polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 mesh = SubResource("PlaneMesh_01tmk")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Floor"]
-navigation_mesh = SubResource("NavigationMesh_lj808")
+navigation_mesh = SubResource("NavigationMesh_ktxq6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_ik3jr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
@@ -72,4 +85,7 @@ mesh = SubResource("PlaneMesh_q2kex")
 shape = SubResource("ConvexPolygonShape3D_k0mwg")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Finish"]
-navigation_mesh = SubResource("NavigationMesh_lhxqf")
+navigation_mesh = SubResource("NavigationMesh_p8sgl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Finish/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_m5p6w")

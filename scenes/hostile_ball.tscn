@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp58mbrhs5j1c"]
+
+[ext_resource type="Script" path="res://scripts/hostile_ball.gd" id="1_gush4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfaxc"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bd5f3"]
+material = SubResource("StandardMaterial3D_dfaxc")
+radius = 1.75
+height = 3.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bslyh"]
+radius = 1.75
+
+[node name="HostileBall" type="RigidBody3D"]
+mass = 3.0
+script = ExtResource("1_gush4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_bd5f3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bslyh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 0.1
+path_max_distance = 8.01
+debug_enabled = true

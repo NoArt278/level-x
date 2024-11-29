@@ -15,6 +15,6 @@ func advance_level(amount: int, tp_hostile_maze : bool) -> void :
 		get_tree().change_scene_to_file("res://scenes/finish.tscn")
 	else :
 		if tp_hostile_maze :
-			get_tree().change_scene_to_file("res://scenes/finish.tscn")
+			get_tree().change_scene_to_file("res://scenes/hostile_maze.tscn")
 		else :
 			get_tree().call_deferred("reload_current_scene")

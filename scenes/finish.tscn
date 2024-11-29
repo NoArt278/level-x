@@ -21,7 +21,7 @@ shading_mode = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rd1ro"]
 material = SubResource("StandardMaterial3D_xa4mo")
-size = Vector2(100, 100)
+size = Vector2(500, 500)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjggw"]
 shading_mode = 0
