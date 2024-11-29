@@ -9,6 +9,9 @@ func _ready() -> void:
 	button_material.albedo_color = button_color
 
 func _interact() -> void:
+	if button_sound.playing :
+		button_sound.stop()
+	button_sound.play()
 	target.callv(target_method, params)
 	if GameManager.rotate_room : 
 		button_color = Color("#FFFFFF")

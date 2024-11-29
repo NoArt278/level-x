@@ -41,7 +41,6 @@ func generate_maze() -> void:
 	var open_coords = [curr_coord]
 	var start_coord = curr_coord
 	var visited = []
-	var is_backtrack = false
 	var last_floor_coord = start_coord
 	ball.position = map_to_local(curr_coord) + Vector3i.BACK * 0.05
 	ball.call_deferred("reparent", $"../..")
