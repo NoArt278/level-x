@@ -135,6 +135,23 @@ text = "Looking behind once in a while
 can be a good thing"
 font_size = 36
 
+[node name="RepeatText" type="Label3D" parent="Room/OtherTexts"]
+transform = Transform3D(4.37114e-08, 0, 1, 0, 1, 0, -1, 0, 4.37114e-08, 2.71417, 1.16469, -2.92789)
+double_sided = false
+outline_modulate = Color(0, 0, 0, 0)
+text = "Trying to reach a goal
+repeatedly may lead to 
+great results"
+font_size = 36
+
+[node name="StuckText" type="Label3D" parent="Room/OtherTexts"]
+transform = Transform3D(-0.496444, 0, -0.868069, 0, 1, 0, 0.868069, 0, -0.496444, -2.53558, 0.464039, -2.60512)
+double_sided = false
+outline_modulate = Color(0, 0, 0, 0)
+text = "Stuck ? Patience may
+be the key to open a path"
+font_size = 36
+
 [node name="LookUpText" type="Label3D" parent="Room/OtherTexts"]
 transform = Transform3D(1, 5.14505e-09, 3.90806e-08, 3.90806e-08, -0.258819, -0.965926, 5.14505e-09, 0.965926, -0.258819, 0, 7.14554, 0)
 double_sided = false
