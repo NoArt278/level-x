@@ -73,7 +73,7 @@ interact={
 
 [navigation]
 
-3d/default_edge_connection_margin=2.5
+3d/default_edge_connection_margin=5.0
 
 [rendering]
 

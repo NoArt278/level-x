@@ -194,3 +194,4 @@ libraries = {
 autoplay = "finish"
 
 [editable path="Player"]
+[editable path="Player/HUD"]

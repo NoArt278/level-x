@@ -12,6 +12,7 @@ var can_move : bool = true
 @onready var reticle: ColorRect = $HUD/Reticle
 @onready var red_death: ColorRect = $HUD/RedDeath
 @onready var rich_text_label: RichTextLabel = $HUD/RedDeath/RichTextLabel
+@onready var hurt_sfx: AudioStreamPlayer3D = $HurtSFX
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -60,6 +61,7 @@ func _physics_process(delta: float) -> void:
 			curr_interactable._interact()
 
 func die() -> void :
+	hurt_sfx.play()
 	can_move = false
 	var fall_tween = create_tween()
 	fall_tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 90), 0.5)

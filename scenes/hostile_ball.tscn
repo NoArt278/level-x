@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp58mbrhs5j1c"]
+[gd_scene load_steps=6 format=3 uid="uid://bp58mbrhs5j1c"]
 
 [ext_resource type="Script" path="res://scripts/hostile_ball.gd" id="1_gush4"]
+[ext_resource type="AudioStream" uid="uid://ydhaeu4ddang" path="res://assets/sounds/BallFollow.wav" id="2_ffrj0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfaxc"]
 shading_mode = 0
@@ -31,5 +32,9 @@ path_desired_distance = 3.0
 target_desired_distance = 0.1
 path_max_distance = 8.01
 debug_enabled = true
+
+[node name="HostileSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ffrj0")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
