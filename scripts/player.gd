@@ -11,6 +11,7 @@ var can_move : bool = true
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var reticle: ColorRect = $HUD/Reticle
 @onready var red_death: ColorRect = $HUD/RedDeath
+@onready var rich_text_label: RichTextLabel = $HUD/RedDeath/RichTextLabel
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -64,6 +65,8 @@ func die() -> void :
 	fall_tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 90), 0.5)
 	var death_tween = red_death.create_tween()
 	death_tween.tween_property(red_death, "color", Color.RED, 1.5)
+	await death_tween.finished
+	rich_text_label.visible = true
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :
