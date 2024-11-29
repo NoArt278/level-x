@@ -2,8 +2,12 @@ extends Node3D
 
 var rotate_tween
 var target_angle = 0
+@onready var scrape_sfx: AudioStreamPlayer3D = $ScrapeSFX
 
 func rotate_room(angle : float) -> void:
+	if scrape_sfx.playing :
+		scrape_sfx.stop()
+	scrape_sfx.play()
 	if rotate_tween :
 		rotate_tween.kill()
 	target_angle += angle

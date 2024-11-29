@@ -31,7 +31,6 @@ shape = SubResource("SphereShape3D_bslyh")
 path_desired_distance = 3.0
 target_desired_distance = 0.1
 path_max_distance = 8.01
-debug_enabled = true
 
 [node name="HostileSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_ffrj0")
