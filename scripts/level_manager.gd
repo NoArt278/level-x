@@ -7,7 +7,6 @@ var advance_level_multiplier : int = 1
 @onready var button_2: Interactable = $Room/Button2
 @onready var button_3: Interactable = $Room/Button3
 @onready var door: MeshInstance3D = %Door
-@onready var bgm: AudioStreamPlayer3D = $BGM
 
 func _ready() -> void:
 	advance_level_per_goal += (GameManager.maze_size / 2) - 4
@@ -43,4 +42,4 @@ func _on_ball_body_entered(body: Node) -> void:
 	var body_parent_name = body.get_parent().name
 	if body_parent_name.contains("Wall") or body_parent_name.contains("Floor") or body_parent_name.contains("Ceiling") :
 		door._on_ball_fell()
-		bgm.stop()
+		GameManager.stop_bgm()

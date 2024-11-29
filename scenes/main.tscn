@@ -152,8 +152,5 @@ wait_time = 90.0
 one_shot = true
 autostart = true
 
-[node name="BGM" type="AudioStreamPlayer3D" parent="."]
-autoplay = true
-
 [connection signal="body_entered" from="Room/Maze/Ball" to="." method="_on_ball_body_entered"]
 [connection signal="timeout" from="SkipTimer" to="." method="_on_skip_timer_timeout"]
