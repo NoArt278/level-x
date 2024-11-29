@@ -16,6 +16,8 @@ radius = 1.75
 
 [node name="HostileBall" type="RigidBody3D"]
 mass = 3.0
+contact_monitor = true
+max_contacts_reported = 3
 script = ExtResource("1_gush4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -29,3 +31,5 @@ path_desired_distance = 3.0
 target_desired_distance = 0.1
 path_max_distance = 8.01
 debug_enabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

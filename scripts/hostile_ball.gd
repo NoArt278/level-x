@@ -22,3 +22,8 @@ func _physics_process(delta):
 
 	angular_velocity = current_agent_position.direction_to(next_path_position) * ROLL_SPEED
 	linear_velocity = current_agent_position.direction_to(next_path_position) * MOVE_SPEED
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.name == "Player" :
+		body.die()

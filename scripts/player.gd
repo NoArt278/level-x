@@ -7,8 +7,10 @@ const RAY_LENGTH : float = 30
 var mouse_sensitivity : float = 0.002 
 var mouse_pos_delta : Vector2 = Vector2.ZERO
 var curr_interactable : Interactable
+var can_move : bool = true
 @onready var camera_3d: Camera3D = $Camera3D
-@onready var reticle: ColorRect = %Reticle
+@onready var reticle: ColorRect = $HUD/Reticle
+@onready var red_death: ColorRect = $HUD/RedDeath
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -25,9 +27,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	move_and_slide()
+	if can_move :
+		move_and_slide()
 	
-	if mouse_pos_delta.length() < 50 :
+	if mouse_pos_delta.length() < 50 and can_move :
 		rotate_y(mouse_pos_delta.x * mouse_sensitivity)
 		$Camera3D.rotate_x(mouse_pos_delta.y * mouse_sensitivity)
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(70), deg_to_rad(70))
@@ -54,6 +57,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") :
 		if curr_interactable :
 			curr_interactable._interact()
+
+func die() -> void :
+	can_move = false
+	var fall_tween = create_tween()
+	fall_tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 90), 0.5)
+	var death_tween = red_death.create_tween()
+	death_tween.tween_property(red_death, "color", Color.RED, 1.5)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :
