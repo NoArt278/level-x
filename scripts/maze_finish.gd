@@ -5,7 +5,6 @@ var level_manager: Node3D
 
 func _ready() -> void:
 	if get_tree().current_scene.name == "LevelManager" :
-		print("main scene")
 		level_manager = $"../../.."
 	target = get_tree().get_first_node_in_group("targets")
 
@@ -22,7 +21,7 @@ func _on_body_entered(body: Node3D) -> void:
 			if audio_stream_player_3d.playing : 
 				audio_stream_player_3d.stop()
 			audio_stream_player_3d.play()
-	elif body.name.contains("Player") :
+	elif body.name.contains("Player") and get_tree().current_scene.name != "LevelManager":
 		if audio_stream_player_3d.playing : 
 			audio_stream_player_3d.stop()
 		audio_stream_player_3d.play()
