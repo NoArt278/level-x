@@ -10,7 +10,8 @@ func _ready() -> void:
 	target = get_tree().get_first_node_in_group("targets")
 
 func _interact() -> void :
-	target.callv(target_method, params)
+	if target : 
+		target.callv(target_method, params)
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.name == "Ball" :
@@ -24,4 +25,4 @@ func _on_body_entered(body: Node3D) -> void:
 		if audio_stream_player_3d.playing : 
 			audio_stream_player_3d.stop()
 		audio_stream_player_3d.play()
-		get_tree().change_scene_to_file("res://scenes/finish.tscn")
+		get_tree().change_scene_to_file("res://scenes/survived.tscn")

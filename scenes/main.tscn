@@ -61,6 +61,7 @@ skeleton = NodePath("../..")
 
 [node name="Maze" parent="Room" instance=ExtResource("5_hq7g6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.015)
+metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Ball" parent="Room/Maze" instance=ExtResource("6_iv0br")]
 unique_name_in_owner = true

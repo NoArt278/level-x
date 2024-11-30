@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjofc05ut5fh1"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_axmnc"]
+[ext_resource type="Texture2D" uid="uid://3ocxki3svw7v" path="res://assets/textures/Main Menu Triangle.png" id="1_eis15"]
+[ext_resource type="PackedScene" uid="uid://bq50myhmdsafh" path="res://scenes/room.tscn" id="3_e388q"]
+[ext_resource type="PackedScene" uid="uid://yifmmgi2wrgn" path="res://scenes/props/maze.tscn" id="4_00b6m"]
+[ext_resource type="PackedScene" uid="uid://cgol4dhl06mo8" path="res://scenes/props/ball.tscn" id="5_fe6iq"]
+[ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="5_k8hlo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxq1u"]
+texture = ExtResource("1_eis15")
+modulate_color = Color(1, 1, 1, 0.341176)
+
+[node name="Menu" type="Node3D"]
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_axmnc")
+
+[node name="Panel" type="Panel" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -210.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gxq1u")
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 78.0
+offset_top = 86.0
+offset_right = 193.0
+offset_bottom = 144.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "START"
+flat = true
+
+[node name="Title" type="RichTextLabel" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 71.0
+offset_top = -77.0
+offset_right = 267.0
+offset_bottom = 61.0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "LEVEL : 1000"
+
+[node name="FastestTime" type="RichTextLabel" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -128.0
+offset_right = 567.0
+offset_bottom = -88.0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="SurvivedText" type="RichTextLabel" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -88.0
+offset_right = 277.0
+offset_bottom = -48.0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="RightButtonTimer" type="Timer" parent="MainMenu"]
+wait_time = 0.3
+
+[node name="LeftButtonTimer" type="Timer" parent="MainMenu"]
+wait_time = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.23122)
+
+[node name="Room" parent="." instance=ExtResource("3_e388q")]
+
+[node name="Maze" parent="Room" instance=ExtResource("4_00b6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.47785)
+
+[node name="Ball" parent="Room/Maze" instance=ExtResource("5_fe6iq")]
+unique_name_in_owner = true
+
+[node name="Button" parent="Room" node_paths=PackedStringArray("target") instance=ExtResource("5_k8hlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.513669, 0.749014, 0.42551)
+target = NodePath("../Maze")
+target_method = "rotate_maze"
+params = [45.0]
+
+[node name="Button2" parent="Room" node_paths=PackedStringArray("target") instance=ExtResource("5_k8hlo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.528635, 0.749014, 0.42551)
+button_color = Color(0, 0, 1, 1)
+target = NodePath("../Maze")
+target_method = "rotate_maze"
+params = [-45.0]
+
+[connection signal="pressed" from="MainMenu/StartButton" to="MainMenu" method="_on_start_button_pressed"]
+[connection signal="timeout" from="MainMenu/RightButtonTimer" to="MainMenu" method="_on_right_button_timer_timeout"]
+[connection signal="timeout" from="MainMenu/LeftButtonTimer" to="MainMenu" method="_on_left_button_timer_timeout"]

@@ -13,6 +13,7 @@ var can_move : bool = true
 @onready var red_death: ColorRect = $HUD/RedDeath
 @onready var rich_text_label: RichTextLabel = $HUD/RedDeath/RichTextLabel
 @onready var hurt_sfx: AudioStreamPlayer3D = $HurtSFX
+@onready var menu_timer: Timer = $HUD/MenuTimer
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -69,9 +70,14 @@ func die() -> void :
 	death_tween.tween_property(red_death, "color", Color.RED, 1.5)
 	await death_tween.finished
 	rich_text_label.visible = true
+	menu_timer.start()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED :
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		mouse_pos_delta = -event.relative
+
+
+func _on_menu_timer_timeout() -> void:
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/menu.tscn")

@@ -17,7 +17,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="HUD" parent="." instance=ExtResource("2_e2361")]
 
+[node name="RichTextLabel" parent="HUD/RedDeath" index="0"]
+offset_left = -72.5
+offset_top = -23.0
+offset_right = 72.5
+offset_bottom = 23.0
+
+[node name="MenuTimer" type="Timer" parent="HUD"]
+wait_time = 1.5
+one_shot = true
+
 [node name="HurtSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_8ybxo")
+
+[connection signal="timeout" from="HUD/MenuTimer" to="." method="_on_menu_timer_timeout"]
 
 [editable path="HUD"]

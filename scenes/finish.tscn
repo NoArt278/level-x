@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://byhx4xxwa4vbd"]
+[gd_scene load_steps=15 format=3 uid="uid://byhx4xxwa4vbd"]
 
 [ext_resource type="PackedScene" uid="uid://ctjbl24mnknbv" path="res://scenes/player.tscn" id="1_cban8"]
+[ext_resource type="Script" path="res://scripts/finish.gd" id="1_weibo"]
+[ext_resource type="PackedScene" uid="uid://drsbum71xssyt" path="res://scenes/props/button.tscn" id="2_mom6w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c8wnm"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -34,22 +36,6 @@ THANKS FOR PLAYING !
 "
 font_size = 27
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y1t4"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_tfepn"]
-material = SubResource("StandardMaterial3D_5y1t4")
-text = "MADE BY : NoArt278
-Game Off 2024"
-font_size = 27
-
-[sub_resource type="TextMesh" id="TextMesh_jvtgk"]
-material = SubResource("StandardMaterial3D_5y1t4")
-text = "CREDITS : 
-"
-font_size = 27
-
 [sub_resource type="Animation" id="Animation_x4wcs"]
 length = 0.001
 tracks/0/type = "value"
@@ -67,38 +53,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Made by:position")
+tracks/1/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -5.37085, -5.0389)]
+"values": [128.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Credits:position")
+tracks/2/path = NodePath("Button:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -6.17085, -5.0389)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [128.0]
+"values": [Vector3(0, -7.06033, -5.17978)]
 }
 
 [sub_resource type="Animation" id="Animation_701b6"]
@@ -119,38 +93,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Made by:position")
+tracks/1/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5.96003, 7.96003),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -5.37085, -5.0389), Vector3(0, 1.62915, -5.0389)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Credits:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5.96003, 9.96003),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -6.17085, -5.0389), Vector3(0, 1.124, -5.039)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player/Camera3D:environment:sky:sky_material:energy_multiplier")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 2.03333),
 "transitions": PackedFloat32Array(0.435276, 1.86607),
 "update": 0,
 "values": [128.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -7.06033, -5.17978), Vector3(0, 0.660597, -5.17978)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ded1"]
@@ -160,6 +122,7 @@ _data = {
 }
 
 [node name="Finish" type="Node3D"]
+script = ExtResource("1_weibo")
 
 [node name="Player" parent="." instance=ExtResource("1_cban8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.954744, 0)
@@ -179,19 +142,23 @@ mesh = SubResource("PlaneMesh_rd1ro")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.45136, -5.0389)
 mesh = SubResource("TextMesh_148jp")
 
-[node name="Made by" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, -0.000506145, 0, 0.000506145, 1, 0, 0, 0, 1, 0, -5.37085, -5.0389)
-mesh = SubResource("TextMesh_tfepn")
-
-[node name="Credits" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, -0.000506145, 0, 0.000506145, 1, 0, 0, 0, 1, 0, -6.17085, -5.0389)
-mesh = SubResource("TextMesh_jvtgk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8ded1")
 }
 autoplay = "finish"
+
+[node name="Button" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_mom6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.06033, -5.17978)
+button_color = Color(0, 1, 0, 1)
+target = NodePath("..")
+target_method = "restart"
+
+[node name="Label3D" type="Label3D" parent="Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.573375, 0.277161)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Back to menu"
 
 [editable path="Player"]
 [editable path="Player/HUD"]
