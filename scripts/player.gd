@@ -71,15 +71,16 @@ func _process(delta: float) -> void:
 	timer.text = str(minutes) + "'" + str(secs) + '"' + str(msec)
 
 func die() -> void :
-	hurt_sfx.play()
-	can_move = false
-	var fall_tween = create_tween()
-	fall_tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 90), 0.5)
-	var death_tween = red_death.create_tween()
-	death_tween.tween_property(red_death, "color", Color.RED, 1.5)
-	await death_tween.finished
-	rich_text_label.visible = true
-	menu_timer.start()
+	if can_move :
+		hurt_sfx.play()
+		can_move = false
+		var fall_tween = create_tween()
+		fall_tween.tween_property(self, "rotation_degrees", Vector3(0, 0, 90), 0.5)
+		var death_tween = red_death.create_tween()
+		death_tween.tween_property(red_death, "color", Color.RED, 1.5)
+		await death_tween.finished
+		rich_text_label.visible = true
+		menu_timer.start()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :
