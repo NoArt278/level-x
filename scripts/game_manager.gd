@@ -1,8 +1,8 @@
 extends Node
 
 var level : int = 0
-var room_count : int = 1
 var maze_size : int = 8
+var room_count : int = 1
 var maze_finish_count : int = 1
 var skip_count : int = 0
 var rotate_room : bool = false
@@ -12,6 +12,7 @@ var enter_door_sound : AudioStreamPlayer3D
 var high_score_level : int = 0
 var fastest_time : float = INF
 var survived : bool = false
+var start_time : int
 const FOUR_LOOP = preload("res://assets/sounds/four_loop.mp3")
 const DOOR_ENTER = preload("res://assets/sounds/DoorEnter.wav")
 
@@ -57,9 +58,10 @@ func advance_level(amount: int, tp_hostile_maze : bool) -> void :
 			high_score_level = level
 			save_file.store_line(JSON.stringify({"highest_level" : high_score_level}))
 		if level >= 1000 :
-			var curr_time = Time.get_ticks_msec()
+			var curr_time = Time.get_ticks_msec() - start_time
 			if fastest_time > curr_time :
-				save_file.store_line(JSON.stringify({"fastest_time" : curr_time}))
+				fastest_time = curr_time
+				save_file.store_line(JSON.stringify({"fastest_time" : fastest_time}))
 			stop_bgm()
 			get_tree().change_scene_to_file("res://scenes/finish.tscn")
 		else :

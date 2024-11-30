@@ -15,12 +15,13 @@ func _interact() -> void :
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.name == "Ball" :
-		_interact()
-		level_manager.add_advance_level()
-		GameManager.maze_finish_count += 1
-		if audio_stream_player_3d.playing : 
-			audio_stream_player_3d.stop()
-		audio_stream_player_3d.play()
+		if level_manager :
+			_interact()
+			level_manager.add_advance_level()
+			GameManager.maze_finish_count += 1
+			if audio_stream_player_3d.playing : 
+				audio_stream_player_3d.stop()
+			audio_stream_player_3d.play()
 	elif body.name.contains("Player") :
 		if audio_stream_player_3d.playing : 
 			audio_stream_player_3d.stop()

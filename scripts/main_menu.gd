@@ -20,11 +20,17 @@ func _ready() -> void:
 		var sec_time = roundi(GameManager.fastest_time / 1000)
 		var minutes = roundi(sec_time/60.0)
 		var secs = roundi(sec_time % 60)
-		fastest_time.text = "Fastest time : " + str(minutes) + ":" + str(secs)
+		fastest_time.text = "Fastest time : " + str(minutes) + " m " + str(secs) + " s"
 	if GameManager.survived :
 		survived_text.text = "Survive Ending Unlocked"
 
 func _on_start_button_pressed() -> void:
+	GameManager.level = 0
+	GameManager.maze_size = 8
+	GameManager.maze_finish_count = 1
+	GameManager.rotate_room = false
+	GameManager.ball_fell = false
+	GameManager.start_time = Time.get_ticks_msec()
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 

@@ -14,6 +14,7 @@ var can_move : bool = true
 @onready var rich_text_label: RichTextLabel = $HUD/RedDeath/RichTextLabel
 @onready var hurt_sfx: AudioStreamPlayer3D = $HurtSFX
 @onready var menu_timer: Timer = $HUD/MenuTimer
+@onready var timer: RichTextLabel = $HUD/Timer
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and not is_on_ceiling():
@@ -60,6 +61,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact") :
 		if curr_interactable :
 			curr_interactable._interact()
+
+func _process(delta: float) -> void:
+	var curr_time = Time.get_ticks_msec() - GameManager.start_time
+	var sec_time = roundi(curr_time / 1000)
+	var minutes = roundi(sec_time/60.0)
+	var secs = roundi(sec_time % 60)
+	var msec = roundi(curr_time % 1000)
+	timer.text = str(minutes) + "'" + str(secs) + '"' + str(msec)
 
 func die() -> void :
 	hurt_sfx.play()

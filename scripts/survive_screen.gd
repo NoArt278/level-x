@@ -8,10 +8,13 @@ extends Control
 func _ready() -> void:
 	var save_file = FileAccess.open("user://1000_save.save", FileAccess.WRITE)
 	if GameManager.level > GameManager.high_score_level :
-		save_file.store_line(JSON.stringify({"highest_level" : GameManager.level}))
-	var curr_time = Time.get_ticks_msec()
+		GameManager.high_score_level = GameManager.level
+		save_file.store_line(JSON.stringify({"highest_level" : GameManager.high_score_level}))
+	var curr_time = Time.get_ticks_msec() - GameManager.start_time
 	if GameManager.fastest_time > curr_time :
+		GameManager.fastest_time = curr_time
 		save_file.store_line(JSON.stringify({"fastest_time" : min(GameManager.fastest_time, curr_time)}))
+	GameManager.survived = true
 	save_file.store_line(JSON.stringify({"survived" : true}))
 
 func _on_text_timer_timeout() -> void:
